@@ -85,3 +85,21 @@ class Platform(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image, (PL_WIDTH, PL_HEIGHT))
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = pygame.Rect(x, y, PL_WIDTH, PL_HEIGHT)
+
+
+class Enemy(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        super().__init__()
+        self.image = pygame.image.load("data/enemy.png")
+        self.image = pygame.transform.scale(self.image, (PL_WIDTH, PL_HEIGHT)).convert_alpha()
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect = pygame.Rect(x, y, PL_WIDTH, PL_HEIGHT)
+
+
+class Portals(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        super().__init__()
+        self.image = pygame.image.load("data/portal.png")
+        self.image = pygame.transform.scale(self.image, (PL_WIDTH, PL_HEIGHT))
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect = pygame.Rect(x, y, PL_WIDTH, PL_HEIGHT)
