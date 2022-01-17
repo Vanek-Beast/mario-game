@@ -15,6 +15,10 @@ class Player(pygame.sprite.Sprite):
         self.change_x = 0  # передвижение по горизонтали
         self.change_y = 0  # передвижение по вертикали
         self.platforms = pygame.sprite.Group()  # все платформы
+        self.image_kn = pygame.image.load('data/humkn.png').convert_alpha()
+        self.image_kn = pygame.transform.scale(self.image_kn, (PL_WIDTH, PL_HEIGHT))
+        self.can_kill = False
+        self.knives = pygame.sprite.Group()
 
     def gravity(self):  # гравитация
         if self.change_y == 0:
@@ -100,6 +104,15 @@ class Portals(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
         self.image = pygame.image.load("data/portal.png")
+        self.image = pygame.transform.scale(self.image, (PL_WIDTH, PL_HEIGHT))
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect = pygame.Rect(x, y, PL_WIDTH, PL_HEIGHT)
+
+
+class Knife(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        super().__init__()
+        self.image = pygame.image.load("data/knife.png").convert_alpha()
         self.image = pygame.transform.scale(self.image, (PL_WIDTH, PL_HEIGHT))
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = pygame.Rect(x, y, PL_WIDTH, PL_HEIGHT)
